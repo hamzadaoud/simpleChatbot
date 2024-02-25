@@ -1,0 +1,117 @@
+{
+    "intents": {
+        "greet": [
+            "hello",
+            "hi",
+            "hey",
+            "good morning",
+            "good afternoon",
+            "good evening",
+            "howdy",
+            "greetings",
+            "what's up",
+            "yo"
+        ]
+        ,
+        "ask_age": [
+            "how old are you",
+            "what's your age",
+            "birth year",
+            "age",
+            "date of birth"
+        ]
+        ,
+        "about_chatbot": [
+            "who are you",
+            "what are you",
+            "when were you born?",
+            "what can you do",
+            "what is your purpose",
+            "are you a robot",
+            "are you human",
+            "how do you work"
+        ]
+        ,
+        "farewell": [
+            "goodbye",
+            "bye",
+            "see you later",
+            "take care",
+            "until next time",
+            "bye for now",
+            "farewell",
+            "have a great day",
+            "catch you later"
+        ]
+        ,
+        "thanks": [
+            "thank you",
+            "thanks a lot",
+            "much appreciated",
+            "thank you so much",
+            "thanks a bunch",
+            "thanks!",
+            "thanks for your help",
+            "thank you very much"
+        ],
+      "weather": [
+        "what's the weather like today?",
+        "will it rain tomorrow?",
+        "is it sunny outside?"
+      ],
+      "gaming": [
+        "do you play video games?",
+        "what's your favorite game?",
+        "recommend a game to play"
+      ],
+      "music": [
+        "what's your favorite song?",
+        "play some music",
+        "recommend a playlist",
+        "do you like music?",
+        "what genre of music do you enjoy?",
+        "who's your favorite artist?",
+        "do you play any instruments?"
+    ],
+      "food": [
+        "what's your favorite food?",
+        "do you know any good restaurants nearby?",
+        "can you recommend a recipe?"
+      ],
+      "technology": [
+        "are you familiar with artificial intelligence?",
+        "what's the latest tech news?",
+        "do you have any programming tips?",
+        "what's your opinion on machine learning?",
+        "can you recommend any tech blogs?",
+        "are you interested in robotics?",
+        "do you know any cool coding tricks?"
+    ],
+      "health": [
+        "how can I stay healthy?",
+        "what are some fitness tips?",
+        "do you know any meditation techniques?"
+      ],
+      "travel": [
+        "have you been to any interesting places?",
+        "can you suggest a travel destination?",
+        "what's the best way to plan a trip?"
+      ],
+      "education": [
+        "do you have any study tips?",
+        "what's the best way to learn a new language?",
+        "can you recommend a good book?"
+      ],
+      "entertainment": [
+        "what's your favorite movie?",
+        "do you know any good TV shows?",
+        "can you recommend a book or podcast?"
+      ],
+      "current_events": [
+        "what's happening in the world?",
+        "can you tell me about recent news headlines?",
+        "do you follow politics?"
+      ]
+    }
+  }
+  
