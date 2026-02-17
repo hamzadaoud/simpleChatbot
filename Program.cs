@@ -1,102 +1,56 @@
-﻿using System;
-using HamzaAI;
+using SimpleChatbot;
 
+Console.WriteLine("Unity Dev Chatbot (Low-Resource Edition)");
+Console.WriteLine("Type your question, or type 'exit' to quit.");
+Console.WriteLine("Commands: /mode docs | /mode hybrid | /help");
 
-class Program
-    {
-        static void Main(string[] args)
-        {
-            NLU nlu = new NLU();
+var options = AppOptions.LoadFromEnvironment();
+var engine = await ChatbotEngine.CreateAsync(options);
 
-            // Load training data from file
-            nlu.LoadTrainingData("data.json");
-
-            Console.WriteLine("Welcome to the Hamza's AI!");
-            Console.WriteLine("You can start chatting. Type 'exit' to quit.");
-
-            while (true)
+while (true)
 {
-    string? userInput = Console.ReadLine();
+    Console.Write("\nYou> ");
+    var input = Console.ReadLine()?.Trim();
 
-    if (userInput?.ToLower() == "exit")
+    if (string.IsNullOrWhiteSpace(input))
+    {
+        continue;
+    }
+
+    if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
     {
         break;
     }
 
-    string intent = nlu.ClassifyIntent(userInput ?? "");
-    string entity = nlu.ExtractEntity(userInput ?? "") ?? "";
+    if (input.StartsWith("/mode", StringComparison.OrdinalIgnoreCase))
+    {
+        var mode = input.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Skip(1).FirstOrDefault();
+        if (mode is "docs" or "hybrid")
+        {
+            options = options with { Mode = mode };
+            engine = await ChatbotEngine.CreateAsync(options);
+            Console.WriteLine($"Bot> Mode set to '{mode}'.");
+        }
+        else
+        {
+            Console.WriteLine("Bot> Invalid mode. Use '/mode docs' or '/mode hybrid'.");
+        }
 
-
-if (intent == "unknown")
-{
-    Console.WriteLine("Bot: I'm sorry, I didn't understand that.");
-}
-else if (intent == "greet" && entity != "")
-{
-    // Respond with a personalized greeting
-    Console.WriteLine($"Bot: Hello {entity}! Nice to meet you.");
-}
-else if (intent == "ask_age")
-{
-    Console.WriteLine("Bot: I am not a human, so I don't have an age.");
-}
-else if (intent == "about_chatbot")
-{
-    Console.WriteLine("Bot: I am a chatbot created by Hamza Daoud. I was created in February 2024.");
-}
-else if (intent == "farewell")
-{
-    Console.WriteLine("Bot: Goodbye! Have a great day!");
-}
-else if (intent == "thanks")
-{
-    Console.WriteLine("Bot: You're welcome!");
-}
-else if (intent == "weather")
-{
-    Console.WriteLine("Bot: I'm sorry, I don't have access to weather information.");
-}
-else if (intent == "gaming")
-{
-    Console.WriteLine("Bot: I'm not capable of playing video games, but I can chat about them!");
-}
-else if (intent == "music")
-{
-    Console.WriteLine("Bot: Unfortunately, I can't play music, but I'm happy to discuss it with you!");
-}
-else if (intent == "food")
-{
-    Console.WriteLine("Bot: I love all kinds of food, but I don't have taste buds!");
-}
-else if (intent == "technology")
-{
-    Console.WriteLine("Bot: Technology is fascinating! What specific tech topic are you interested in?");
-}
-else if (intent == "health")
-{
-    Console.WriteLine("Bot: Your health is important! Do you have any health-related questions?");
-}
-else if (intent == "travel")
-{
-    Console.WriteLine("Bot: Traveling can be so exciting! Where would you like to go next?");
-}
-else if (intent == "education")
-{
-    Console.WriteLine("Bot: Education is the key to success! How can I assist you with your studies?");
-}
-else if (intent == "entertainment")
-{
-    Console.WriteLine("Bot: Let's have some fun! What type of entertainment are you in the mood for?");
-}
-else if (intent == "current_events")
-{
-    Console.WriteLine("Bot: Staying informed is crucial! What current event would you like to discuss?");
-}
-else
-{
-    Console.WriteLine($"Bot: Intent: {intent}");
-}
-
-    }}
-
+        continue;
     }
+
+    if (input.Equals("/help", StringComparison.OrdinalIgnoreCase))
+    {
+        Console.WriteLine("Bot> Ask Unity questions. In docs mode it only uses local Unity docs snippets. In hybrid mode it falls back to OpenAI if no local answer is strong enough.");
+        Console.WriteLine("Bot> Set OPENAI_API_KEY and optional OPENAI_MODEL (default: gpt-4o-mini) for fallback.");
+        continue;
+    }
+
+    var response = await engine.AnswerAsync(input);
+    Console.WriteLine($"Bot> {response.Text}");
+
+    if (!string.IsNullOrWhiteSpace(response.Source))
+    {
+        Console.WriteLine($"Source: {response.Source}");
+    }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Rigidbody movement basics",
+    "url": "https://docs.unity3d.com/ScriptReference/Rigidbody.html",
+    "content": "For physics-based movement in 3D, use Rigidbody and apply forces in FixedUpdate. Avoid directly setting transform position every frame when using physics.",
+    "keywords": ["rigidbody", "fixedupdate", "physics", "force", "movement", "3d"]
+  },
+  {
+    "title": "CharacterController movement",
+    "url": "https://docs.unity3d.com/ScriptReference/CharacterController.html",
+    "content": "CharacterController.Move allows non-physics character movement with collision handling. You must apply gravity manually.",
+    "keywords": ["charactercontroller", "move", "gravity", "player", "controller"]
+  },
+  {
+    "title": "Input System overview",
+    "url": "https://docs.unity3d.com/Packages/com.unity.inputsystem@latest",
+    "content": "The new Input System supports action maps and multiple control schemes. Use InputAction callbacks for decoupled controls.",
+    "keywords": ["input", "inputaction", "controls", "keyboard", "gamepad"]
+  },
+  {
+    "title": "2D collision callbacks",
+    "url": "https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html",
+    "content": "Use OnCollisionEnter2D and OnTriggerEnter2D for 2D collision events. Ensure Rigidbody2D and Collider2D setup is correct.",
+    "keywords": ["2d", "collision", "trigger", "rigidbody2d", "collider2d"]
+  },
+  {
+    "title": "Scene loading",
+    "url": "https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html",
+    "content": "Use SceneManager.LoadScene for immediate loading or LoadSceneAsync for non-blocking transitions and loading screens.",
+    "keywords": ["scene", "scenemanager", "loadscene", "async", "loading"]
+  },
+  {
+    "title": "Coroutines",
+    "url": "https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html",
+    "content": "Coroutines are useful for timed logic without blocking the main thread. Yield return null waits one frame.",
+    "keywords": ["coroutine", "yield", "timing", "frame", "monobehaviour"]
+  },
+  {
+    "title": "NavMesh AI movement",
+    "url": "https://docs.unity3d.com/ScriptReference/AI.NavMeshAgent.html",
+    "content": "NavMeshAgent handles navigation and pathfinding on baked nav meshes. Set destination and tune speed, stopping distance, and acceleration.",
+    "keywords": ["navmesh", "navmeshagent", "ai", "pathfinding", "agent"]
+  }
+]
